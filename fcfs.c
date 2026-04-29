@@ -1,6 +1,5 @@
-// C program for FCFS Disk Scheduling with user input
 #include <stdio.h>
-#include <stdlib.h>  // for abs()
+#include <stdlib.h>
 
 void FCFS(int arr[], int size, int head)
 {
@@ -10,14 +9,8 @@ void FCFS(int arr[], int size, int head)
     for(int i = 0; i < size; i++)
     {
         cur_track = arr[i];
-
-        // calculate absolute distance
         distance = abs(head - cur_track);
-
-        // increase total seek count
         seek_count += distance;
-
-        // move head to current track
         head = cur_track;
     }
 
@@ -37,7 +30,7 @@ int main()
     printf("Enter number of disk requests: ");
     scanf("%d", &size);
 
-    int arr[size];  // Variable Length Array (C99)
+    int arr[size];
 
     printf("Enter the request sequence:\n");
     for(int i = 0; i < size; i++)
