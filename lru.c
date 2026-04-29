@@ -17,7 +17,6 @@ int main()
         time[i] = 0;      
     }
 
-    // Input number of pages
     printf("Enter the number of pages: ");
     scanf("%d",&no_pages);
 
