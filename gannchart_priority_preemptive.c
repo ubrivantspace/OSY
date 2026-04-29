@@ -14,17 +14,16 @@ int main() {
         scanf("%d %d %d", &at[i], &bt[i], &priority[i]);
         remaining_bt[i] = bt[i];
         done[i] = 0;
-        first_start[i] = -1; // To calculate Response Time
+        first_start[i] = -1;
     }
 
     g_time[0] = 0;
-    int last_idx = -2; // To track process switches for Gantt Chart
+    int last_idx = -2;
 
     while (completed < n) {
         int idx = -1;
         int max_priority = 9999;
 
-        // Find process with highest priority available at current time
         for (int i = 0; i < n; i++) {
             if (at[i] <= time && !done[i] && priority[i] < max_priority) {
                 max_priority = priority[i];
@@ -33,13 +32,11 @@ int main() {
         }
 
         if (idx != -1) {
-            // Track Response Time
             if (first_start[idx] == -1) {
                 first_start[idx] = time;
                 rt[idx] = first_start[idx] - at[idx];
             }
 
-            // Update Gantt Chart logic for preemption
             if (idx != last_idx) {
                 g_id[g_idx] = id[idx];
                 g_time[g_idx] = time;
@@ -58,7 +55,6 @@ int main() {
                 completed++;
             }
         } else {
-            // Idle time handling
             if (last_idx != -1) {
                 g_id[g_idx] = -1;
                 g_time[g_idx] = time;
@@ -68,14 +64,12 @@ int main() {
             last_idx = -1;
         }
     }
-    g_time[g_idx] = time; // Final timestamp
+    g_time[g_idx] = time;
 
-    // Output Table
     printf("\nPID\tPRI\tAT\tBT\tCT\tTAT\tWT\tRT\n");
     for (int i = 0; i < n; i++)
         printf("P%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", id[i], priority[i], at[i], bt[i], ct[i], tat[i], wt[i], rt[i]);
 
-    // Gantt Chart
     printf("\nGantt Chart:\n|");
     for (int i = 0; i < g_idx; i++)
         (g_id[i] == -1) ? printf(" Idle |") : printf("  P%d  |", g_id[i]);
