@@ -27,7 +27,6 @@ int main() {
         }
 
         if (idx != -1) {
-            // Response Time = Time when process starts - Arrival Time
             rt[idx] = time - at[idx];
 
             time += bt[idx];
@@ -40,7 +39,6 @@ int main() {
             g_id[g_idx] = id[idx];
             g_time[++g_idx] = time;
         } else {
-            // Handle Idle Time
             if (g_idx > 0 && g_id[g_idx-1] == -1) {
                 time++;
                 g_time[g_idx] = time;
@@ -52,12 +50,9 @@ int main() {
         }
     }
 
-    // Table with RT
     printf("\nPID\tAT\tBT\tCT\tTAT\tWT\tRT\n");
     for (int i = 0; i < n; i++)
         printf("P%d\t%d\t%d\t%d\t%d\t%d\t%d\n", id[i], at[i], bt[i], ct[i], tat[i], wt[i], rt[i]);
-
-    // Gantt Chart
     printf("\nGantt Chart:\n|");
     for (int i = 0; i < g_idx; i++) {
         if (g_id[i] == -1) printf(" Idle |");
