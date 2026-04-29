@@ -73,7 +73,7 @@ int main() {
   }
 
   if (count == p) {
-    printf("\n✅ Safe sequence exists!\n");
+    printf("\nSafe sequence exists!\n");
     printf("Safe sequence: ");
     for (i = 0; i < p; i++) {
       printf("P%d ", safe[i]);
@@ -84,7 +84,7 @@ int main() {
     }
     printf("\n");
   } else {
-    printf("\n❌ Safe sequence does not exist (deadlock risk).\n");
+    printf("\nSafe sequence does not exist (deadlock risk).\n");
   }
 
   return 0;
