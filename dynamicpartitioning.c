@@ -21,10 +21,9 @@ int main() {
     for(i = 0; i < n; i++) {
         printf("Process %d: ", i+1);
         scanf("%d", &processSize[i]);
-        allocation[i] = -1; // Not allocated
+        allocation[i] = -1; 
     }
 
-    // First Fit Allocation
     for(i = 0; i < n; i++) {
         for(j = 0; j < m; j++) {
             if(blockSize[j] >= processSize[i]) {
